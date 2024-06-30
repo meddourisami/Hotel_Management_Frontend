@@ -59,9 +59,9 @@ const AddRoom = () => {
     return (
         <>
             <section className= "container, mt-5 mb-5 align-items-center">
-                <div className="row d-flex justfy-content-center">
+                <div className="row d-flex justfy-content-between mb-3 mt-5">
                     <div className= "col-md-8 col-lg-6">
-                        <h2 className="mt-5 mb-2 text-left">Add a New Room</h2>
+                        <h2 mb-3 mt-5>Add a New Room</h2>
                         {successMessage && (
                             <div className="alert alert-success fade show">{successMessage}</div>
                         )}
