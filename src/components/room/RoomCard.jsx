@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 
 const RoomCard = ({room}) => {
   return (
-    <Col key={room.id} className='mb-4' xs={12}>
+    <Col key={room.id} className='mb-3' xs={12}>
         <Card>
-            <Card.Body className='d-flex flex-wrap align-items-center'>
-                <div className='flex-shrink-0 mr-3 mb-3 mb-md-0'>
+            <Card.Body className='d-flex flex-wrap align-items-center p-2'>
+                <div className='flex-shrink-0 mr-2 mb-2 mb-md-0'>
                     <Card.Img
                           variant='top'
                           src={`data:image/png;base64,${room.photo}`}
@@ -15,7 +15,7 @@ const RoomCard = ({room}) => {
                           style={{ width: "100%", maxWidth: "200px", height:"auto" }}/>
                           
                 </div>
-                <div className='flex-grow-1 ml-3 px-5'>
+                <div className='flex-grow-1 ml-2 px-3'>
                     <Card.Title className='hotel-coler'>
                         {room.roomType}
                     </Card.Title>

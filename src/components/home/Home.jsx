@@ -1,11 +1,21 @@
 import React from 'react'
+import MainHeader from '../layout/MainHeader'
+import HotelService from '../common/HotelService'
+import Parallax from '../common/Parallax'
+import RoomCarousel from '../common/RoomCarousel'
 
 const Home = () => {
-  return (
-    <div>
-        <h2>Welcome to the home page</h2>      
-    </div>
-  )
+    return (
+      <section>
+        <MainHeader /> 
+        <section className='container'>
+          <RoomCarousel/>
+          <Parallax/>
+          <HotelService />
+          <RoomCarousel/>
+        </section>
+      </section>
+    )
 }
 
 export default Home
