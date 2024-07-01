@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { deleteRoom, getAllRooms } from '../utils/ApiFunctions'
-import { Col } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import RoomFilter from '../common/RoomFilter'
 import RoomPaginator from '../common/RoomPaginator'
-import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa"
+import { FaEdit, FaEye, FaTrashAlt, FaPlus } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 const ExistingRooms = () => {
@@ -75,6 +75,11 @@ const ExistingRooms = () => {
 
     return (
         <>
+            <div className="container col-md-8 col-lg-6">
+				{successMessage && <p className="alert alert-success mt-5">{successMessage}</p>}
+
+				{errorMessage && <p className="alert alert-danger mt-5">{errorMessage}</p>}
+			</div>
             {isLoading ? (
                 <p>Loading existing rooms</p>
             ) : (
@@ -83,9 +88,16 @@ const ExistingRooms = () => {
                             <div className='d-flex justify-content-between mb-3 mt-5'>
                                 <h2>Existing rooms</h2>
                             </div>
-                            <Col md={6} className='mb-3 mb-md-0'>
-                                <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
-                            </Col>
+                            <Row>
+                                <Col md={6} className='mb-3 mb-md-0'>
+                                    <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
+                                </Col>
+                                <Col md={6} className='d-flex justify-content-end'>
+                                    <Link to={"/add-room"}>
+                                        <FaPlus />Add Room
+                                    </Link>
+                                </Col>
+                            </Row>    
                             <table className='table table-bordred table-hover'>
                                 <thead>
                                     <tr className='text-center'>
@@ -126,7 +138,6 @@ const ExistingRooms = () => {
                                 onPageChange={handlePaginationClick}
                             />
                         </section>
-                        
                     </>
             )}
         </>
