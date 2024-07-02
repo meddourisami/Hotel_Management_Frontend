@@ -1,13 +1,20 @@
-import React, {useState} from "react"
+import React, {useContext, useState} from "react"
 import { NavLink, Link } from "react-router-dom"
+import Logout from "../../auth/Logout"
+import { AuthContext } from "../../auth/AuthProvider"
 
 
 const NavBar = () => {
-    const [showAccount, setShowAccount] = useState(false)
+	const [showAccount, setShowAccount] = useState(false)
+	
+	const {user} = useContext(AuthContext)
 
 	const handleAccountClick = () => {
 		setShowAccount(!showAccount)
 	}
+
+	const isLoggedIn = user !== null
+	const userRole = localStorage.getItem('userRole')
 
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
@@ -34,11 +41,13 @@ const NavBar = () => {
 								Browse all rooms
 							</NavLink>
 						</li>
-						<li className="nav-item">
-							<NavLink className="nav-link" aria-current="page" to={"/admin"}>
-								Admin
-							</NavLink>
+						{isLoggedIn && userRole==="ROLE_ADMIN" &&(
+							<li className="nav-item">
+								<NavLink className="nav-link" aria-current="page" to={"/admin"}>
+									Admin
+								</NavLink>
 						</li>
+					)}
 					</ul>
 
 					<ul className="d-flex navbar-nav">
@@ -58,25 +67,18 @@ const NavBar = () => {
                                 {" "}
                                 Account
 							</a>
-
-                            <ul
-                                className={`dropdown-menu ${showAccount ? "show" : ""}`}
-                                aria-labelledby="navbarDropdown">
-								<li>
-									<Link className="dropdown-item" to={"/login"}>
-										Login
-									</Link>
-                                </li>
-                                <li>
-                                    <Link className="dropdown-item" to={"/profile"}>
-                                        Profile
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link className="dropdown-item" to={"/logout"}>
-                                        Logout
-                                    </Link>
-                                </li>
+							<ul
+								className={`dropdown-menu ${showAccount ? "show" : ""}`}
+								aria-labelledby="navbarDropdown">
+								{isLoggedIn ? (
+									<Logout />
+								) : (
+									<li>
+										<Link className="dropdown-item" to={"/login"}>
+											Login
+										</Link>
+									</li>
+								)}
 							</ul>
 						</li>
 					</ul>

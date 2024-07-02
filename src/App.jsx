@@ -11,11 +11,16 @@ import NavBar from "./components/layout/NavBar"
 import Footer from "./components/layout/Footer"
 import RoomListing from "./components/room/RoomListing"
 import Admin from "./components/admin/Admin"
+import Login from "./auth/Login"
+import Registration from "./auth/Registration"
+import Profile from "./auth/Profile"
+import Logout from "./auth/Logout"
+import AuthProvider from "./auth/AuthProvider"
 
 function App() {
 
   return (
-    <>
+    <AuthProvider>
       <main>
         <Router>
           <NavBar/>
@@ -25,12 +30,16 @@ function App() {
             <Route path="/existing-rooms" element={<ExistingRooms />} />
             <Route path="/add-room" element={<AddRoom />} />
             <Route path="/browse-all-rooms" element={<RoomListing />} />
-            <Route path="/admin" element={<Admin/>} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/logout" element={<Logout/>} />
           </Routes>
         </Router>
         <Footer/>
       </main>
-    </>
+    </AuthProvider>
   )
 }
 
